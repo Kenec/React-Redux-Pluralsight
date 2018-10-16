@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import toastr from 'toastr';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
-import toastr from 'toastr';
 
 class ManageCoursePage extends React.Component {
   constructor(props, context) {
@@ -30,7 +30,7 @@ class ManageCoursePage extends React.Component {
     let course = Object.assign({}, this.state.course);
     course[field] = event.target.value;
 
-    return this.setState({ course: course });
+    return this.setState({ course });
   }
 
   courseFormIsValid() {
