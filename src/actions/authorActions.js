@@ -18,18 +18,23 @@ export function deleteAuthorSuccess(authorId) {
   return { type: types.DELETE_AUTHORS_SUCCESS, authorId };
 }
 
+export function authorErrors(error) {
+  return { type: types.AUTHOR_ERROR, error };
+}
+
 export function loadAuthors() {
   return function(dispatch) {
     dispatch(beginAjaxCall());
     return authorApi.getAllAuthors().then(authors => {
       dispatch(loadAuthorSuccess(authors));
     }).catch(error => {
+      dispatch(authorErrors(error));
       throw(error);
     });
   };
 }
 
-export function saveAuthor(author) {
+export function saveOrUpdateAuthor(author) {
   return function(dispatch, getState) {
     dispatch(beginAjaxCall());
     return authorApi.saveAuthor(author).then(savedAuthor => {

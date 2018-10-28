@@ -49,7 +49,7 @@ class ManageAuthorPage extends React.Component {
       return;
     }
     this.setState({ saving: true });
-    this.props.actions.saveAuthor(this.state.author)
+    this.props.actions.saveOrUpdateAuthor(this.state.author)
     .then(() => { 
       toastr.success("Author Saved");
       this.redirect();

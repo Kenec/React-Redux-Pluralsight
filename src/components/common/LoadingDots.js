@@ -5,6 +5,7 @@ class LoadingDots extends React.Component {
     super(props, context);
     
     this.state = { frame: 1};
+    this.setupDots = this.setupDots.bind(this);
   }
 
   componentDidMount() {
@@ -19,21 +20,25 @@ class LoadingDots extends React.Component {
     clearInterval(this.interval);
   }
 
-  render() {
+  setupDots(text) {
     let dots = this.state.frame % (this.props.dots + 1);
-    let text = '';
     while (dots > 0) {
       text += '.';
       dots--;
     }
+  }
+
+  render() {
+    let text = '';
+    this.setupDots(text);
     return <span {...this.props}>{text}&nbsp;</span>;
   }
 }
 
-// LoadingDots.defaultProps = {
-//   interval: 300, 
-//   dots: 30
-// };
+LoadingDots.defaultProps = {
+  interval: 300, 
+  dots: 30
+};
 
 LoadingDots.propTypes = {
   interval: PropTypes.number,

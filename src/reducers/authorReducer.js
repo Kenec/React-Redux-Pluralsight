@@ -20,6 +20,9 @@ export default function authorReducer(state = initialState.author, action) {
         ...state.filter(author => author.id !== action.authorId)
       ];
 
+    case types.AUTHOR_ERROR:
+      return action.error;
+
     default:
       return state;
   }

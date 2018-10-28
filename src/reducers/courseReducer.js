@@ -20,6 +20,9 @@ export default function courseReducer(state = initialState.courses, action) {
         ...state.filter(course => course.id !== action.courseId)
       ];
 
+    case types.COURSE_ERROR:
+      return action.error;
+
     default:
       return state;
   }

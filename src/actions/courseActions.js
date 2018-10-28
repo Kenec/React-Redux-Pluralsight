@@ -18,18 +18,23 @@ export function deleteCourseSuccess(courseId) {
   return { type: types.DELETE_COURSES_SUCCESS, courseId };
 }
 
+export function courseErrors(error) {
+  return { type: types.COURSE_ERROR, error };
+}
+
 export function loadCourses() {
   return function(dispatch) {
     dispatch(beginAjaxCall());
     return courseApi.getAllCourses().then(courses => {
       dispatch(loadCoursesSuccess(courses));
     }).catch(error => {
+      dispatch(courseErrors(error));
       throw(error);
     });
   };
 }
 
-export function saveCourse(course) {
+export function saveOrUpdateCourse(course) {
   return function(dispatch, getState) {
     dispatch(beginAjaxCall());
     return courseApi.saveCourse(course).then(savedCourse => {
