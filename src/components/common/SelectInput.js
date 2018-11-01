@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const SelectInput = ({ name, label, onChange, defaultOption, value, error, options }) => {
   return (
@@ -10,9 +11,9 @@ const SelectInput = ({ name, label, onChange, defaultOption, value, error, optio
           value={value}
           onChange={onChange} 
           className="form-control">
-          <option value="">{defaultOption}</option>
-          {options.map((option) => {
-            return <option key={option.value} value={option.value}>{option.text}</option>;
+          <option value="0">{defaultOption}</option>
+          {options.map(myOption => {
+            return <option key={myOption.value} value={myOption.value}>{myOption.text}</option>;
           })
           }
         </select>

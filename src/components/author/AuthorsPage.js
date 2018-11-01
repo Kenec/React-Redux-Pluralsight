@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
@@ -19,7 +20,7 @@ class AuthorsPage extends React.Component {
     browserHistory.push('/author');
   }
 
-  deleteAuthor(authorId, authorName) {
+  deleteAuthor (authorId, authorName) {
     const confirm = swal(`Do you want to remove ${authorName}?`, {
       buttons: { cancel: true, confirm: true }
     });
