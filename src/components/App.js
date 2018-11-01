@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from './common/Header';
 
-class App extends React.Component {
+export class App extends React.Component {
   render() {
     return (
       <div className="container-fluid">
