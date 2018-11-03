@@ -29,7 +29,7 @@ export function loadAuthors() {
       dispatch(loadAuthorSuccess(authors));
     }).catch(error => {
       dispatch(authorErrors(error));
-      throw(error);
+      // throw(error);
     });
   };
 }
@@ -42,7 +42,7 @@ export function saveOrUpdateAuthor(author) {
         dispatch(createAuthorSuccess(savedAuthor));
     }).catch(error => {
       dispatch(ajaxCallError(error));
-      throw(error);
+      // throw(error);
     });
   };
 }
@@ -54,7 +54,7 @@ export function deleteAuthor(authorId) {
       dispatch(deleteAuthorSuccess(authorId));
     }).catch(error => {
       dispatch(ajaxCallError(error));
-      throw(error);
+      // throw(error);
     });
   };
 }
