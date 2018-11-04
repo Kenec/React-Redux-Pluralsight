@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authorActions from '../../actions/authorActions';
 import AuthorForm from './AuthorForm';
 import toastr from 'toastr';
 
-class ManageAuthorPage extends React.Component {
+export class ManageAuthorPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -96,13 +97,13 @@ ManageAuthorPage.contextTypes = {
   router: PropTypes.object
 };
 
-function getAuthorById(authors, id) {
+export function getAuthorById(authors, id) {
   const author = authors.filter(author => author.id == id);
   if (author.length) return author[0];
   return null;
 }
 
-function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, ownProps) {
   const authorId = ownProps.params.id;
 
   let author = { id: '', firstName: '', lastName: '' };
@@ -115,7 +116,7 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(authorActions, dispatch)
   };

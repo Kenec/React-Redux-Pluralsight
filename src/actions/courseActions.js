@@ -29,7 +29,7 @@ export function loadCourses() {
       dispatch(loadCoursesSuccess(courses));
     }).catch(error => {
       dispatch(courseErrors(error));
-      throw(error);
+      // throw(error);
     });
   };
 }
@@ -42,7 +42,7 @@ export function saveOrUpdateCourse(course) {
         dispatch(createCourseSuccess(savedCourse));
     }).catch(error => {
       dispatch(ajaxCallError(error));
-      throw(error);
+      // throw(error);
     });
   };
 }
@@ -54,7 +54,7 @@ export function deleteCourse(courseId) {
       dispatch(deleteCourseSuccess(courseId));
     }).catch(error => {
       dispatch(ajaxCallError(error));
-      throw(error);
+      // throw(error);
     });
   };
 }

@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
 
-class ManageCoursePage extends React.Component {
+export class ManageCoursePage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -70,15 +71,13 @@ class ManageCoursePage extends React.Component {
 
   render() {
     return (
-      <div>
-        <CourseForm
-          onChange={this.updateCourseState}
-          allAuthors={this.props.authors}
-          course={this.state.course}
-          saving={this.state.saving}
-          onSave={this.saveCourse}
-          errors={this.state.errors} />
-      </div>
+      <CourseForm
+        onChange={this.updateCourseState}
+        allAuthors={this.props.authors}
+        course={this.state.course}
+        saving={this.state.saving}
+        onSave={this.saveCourse}
+        errors={this.state.errors} />
     );
   }
 }

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class LoadingDots extends React.Component {
   constructor(props, context) {
@@ -26,12 +27,13 @@ class LoadingDots extends React.Component {
       text += '.';
       dots--;
     }
+    return text;
   }
 
   render() {
     let text = '';
-    this.setupDots(text);
-    return <span {...this.props}>{text}&nbsp;</span>;
+    let dots = this.setupDots(text);
+    return <span {...this.props}>{dots}&nbsp;</span>;
   }
 }
 
