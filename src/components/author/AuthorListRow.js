@@ -9,7 +9,7 @@ const AuthorListRow = ({ author, deleteAuthor }) => {
           <td>{author.lastName}</td>
           <td></td>
           <td>
-            <Link to={'/author/' + author.id}>
+            <Link className="test" to={'/author/' + author.id}>
               <button className="btn btn-primary">Edit</button>
             </Link>
             &nbsp;&nbsp;

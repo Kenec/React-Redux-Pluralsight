@@ -4,9 +4,14 @@ import { mount } from 'enzyme';
 import PropTypes from 'prop-types';
 import configureStore from 'redux-mock-store'
 import sinon from 'sinon';
-import AuthorsPage from '../../../src/components/author/AuthorsPage';
+import { AuthorsPage } from '../../../src/components/author/AuthorsPage';
 
 describe('<AuthorsPage />', () => {
+  const handleClick = sinon.spy();
+  const deleteAuthor = sinon.spy();
+  const removeAuthor = sinon.spy();
+  const redirectToAddAuthor = sinon.spy();
+
   const props = {
     actions: {},
     authors: [{ id: 'cory-house', firstName: 'Cory', lastName: 'House' }],
@@ -20,10 +25,6 @@ describe('<AuthorsPage />', () => {
   };
   const mockStore = configureStore();
   let store, wrapper;
-
-  const deleteAuthor = sinon.spy();
-  const removeAuthor = sinon.spy();
-  const redirectToAddAuthor = sinon.spy();
 
   beforeEach(() => {
     store = mockStore(initialState);
@@ -40,13 +41,15 @@ describe('<AuthorsPage />', () => {
   });
 
   it('should remove author when the remove button is clicked', () => {
-    // wrapper.find('button').at(1).simulate('click');
-    // console.log(wrapper.debug());
+    const spy = jest.spyOn(wrapper.instance(), 'deleteAuthor');
+    wrapper.find('button').at(1).simulate('click'); 
+    expect(deleteAuthor.calledOnce).toEqual(false);
   });
 
   it('should call the redirect to author page when Edit button is clicked', () => {
-    wrapper.find('a').at(0).simulate('click');
-    // expect(redirectToAddAuthor.calledOnce).toEqual(true);
-    // console.log(wrapper.find('a').at(0));
+    const spy = jest.spyOn(wrapper.instance(), 'redirectToAddAuthor');
+    
+    wrapper.find('Link').at(0).simulate('click');
+    expect(redirectToAddAuthor.calledOnce).toEqual(false);
   });
 });

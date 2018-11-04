@@ -97,13 +97,13 @@ ManageAuthorPage.contextTypes = {
   router: PropTypes.object
 };
 
-function getAuthorById(authors, id) {
+export function getAuthorById(authors, id) {
   const author = authors.filter(author => author.id == id);
   if (author.length) return author[0];
   return null;
 }
 
-function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, ownProps) {
   const authorId = ownProps.params.id;
 
   let author = { id: '', firstName: '', lastName: '' };
@@ -116,7 +116,7 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(authorActions, dispatch)
   };

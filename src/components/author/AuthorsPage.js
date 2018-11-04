@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 import * as authorActions from '../../actions/authorActions';
 import AuthorList from './AuthorList';
 
-class AuthorsPage extends React.Component {
+export class AuthorsPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 

@@ -23,33 +23,42 @@ describe('<ManageCoursePage />', () => {
       category: "JavaScript"
     }
   };
+  const initialState = {
+    actions: props.actions,
+    authors: props.authors,
+    courses: props.courses
+  };
+
+  const redirectToAddAuthor = sinon.spy();
+  const saveCourse = sinon.spy();
 
   let store, wrapper;
-
-  const saveAuthor = sinon.spy();
+  const mockStore = configureStore();
 
   beforeEach(() => {
-    wrapper = mount(<ManageCoursePage {...props} />);
+    store = mockStore(initialState);
+    wrapper = mount(<ManageCoursePage store={store} {...props} />);
   });
 
   it('should render the ManageCoursePage contents', () => {
     expect(wrapper.find('h1').at(0).text()).toEqual('Manage Course');
-    // expect(wrapper.find('[type="submit"]').at(0).length).toEqual(1);
-    // expect(wrapper.find('[value="Add Author"]').at(0).length).toEqual(1);
-    // expect(wrapper.find('td').at(1).text()).toEqual('House');
-    // expect(wrapper.find('AuthorList').length).toEqual(1);
-    // expect(wrapper.find('AuthorListRow').length).toEqual(1);
-    // console.log(wrapper.debug());
+    expect(wrapper.find('TextInput').at(0).length).toEqual(1);
+    expect(wrapper.find('[label="Title"]').at(0).length).toEqual(1);
   });
 
-  it('should remove course when the remove button is clicked', () => {
-  //   // wrapper.find('button').at(1).simulate('click');
-  //   // console.log(wrapper.debug());
+  it('should contain the CourseForm component', () => {
+    expect(wrapper.find('CourseForm').length).toEqual(1);
   });
 
-  it('should call the redirect to course page when Edit button is clicked', () => {
-  //   wrapper.find('a').at(0).simulate('click');
-  //   // expect(redirectToAddAuthor.calledOnce).toEqual(true);
-  //   // console.log(wrapper.find('a').at(0));
+  it('should call updateCourseState on onChange event', () => {
+    const handleChangeSpy = sinon.spy(ManageCoursePage.prototype, "updateCourseState");
+    const event = {target: {name: "title", value: "spam"}};
+    wrapper.find('TextInput').at(0).simulate('change', event);
+    expect(handleChangeSpy.calledOnce).toEqual(false);
+  });
+
+  it('should save course when the save button is clicked', () => {
+    wrapper.find('input').at(2).simulate('click');
+    expect(saveCourse.calledOnce).toEqual(false);
   });
 });
